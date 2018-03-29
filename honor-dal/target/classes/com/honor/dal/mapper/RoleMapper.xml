@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.honor.dal.mapper.RoleMapper">
+	<resultMap id="role" type="com.honor.model.Role">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="deleteFlag" column="delete_flag" />
+		<result property="type" column="type" />
+	</resultMap>
+
+	<select id="load" resultMap="role" parameterType="Object">
+		SELECT * FROM role WHERE id = #{id} AND delete_flag = 0
+	</select>
+	
+	<select id="loadAll" resultMap="role">
+		SELECT * FROM role WHERE delete_flag = 0
+	</select>
+	
+	<update id="delete">
+		UPDATE role
+		SET delete_flag = 1
+		WHERE id = #{id}
+	</update>
+	
+	<update id="updateNotNull" parameterType="com.honor.model.Role">
+		UPDATE role
+		<set>
+	   		<if test="name != null">
+	   		name = #{name},
+	   		</if>
+	   		<if test="description != null">
+	   		description = #{description},
+	   		</if>
+	   		<if test="deleteFlag != null">
+	   		delete_flag = #{deleteFlag},
+	   		</if>
+	   		<if test="type != null">
+	   		type = #{type},
+	   		</if>
+		</set>
+		WHERE id = #{id}
+	</update>
+
+	<insert id="insert" parameterType="com.honor.model.Role">
+		<selectKey resultType="int" keyProperty="id" order="AFTER">SELECT LAST_INSERT_ID()</selectKey>
+		INSERT INTO role(
+		name,
+		description,
+		delete_flag,
+		type
+		)VALUES(
+		#{name},
+		#{description},
+		#{deleteFlag},
+		#{type}
+		)
+	</insert>
+	
+	<select id="selectByType" parameterType="Integer" resultMap="role">
+		SELECT * FROM role WHERE type = #{type} AND delete_flag = 0
+	</select>
+	
+</mapper>
