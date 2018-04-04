@@ -48,7 +48,6 @@ public class BookController {
 	public String list() {
 		List<Book> list = bookBiz.findAll();
 		System.out.println(mailSmtpHost);
-		// List<BookType> list = bookTypeBiz.findAll();
 		System.out.println(JSON.toJSONString(list));
 		return JSON.toJSONString(list);
 	}

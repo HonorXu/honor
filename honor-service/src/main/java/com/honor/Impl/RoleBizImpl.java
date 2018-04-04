@@ -2,6 +2,9 @@ package com.honor.Impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.honor.biz.RoleBiz;
 import com.honor.dal.mapper.RoleMapper;
 import com.honor.model.Role;
@@ -12,18 +15,12 @@ import com.honor.model.Role;
  * @创建者：honor
  * @创建时间：2018-03-29
  */
+@Service
 public class RoleBizImpl implements RoleBiz {
-
+	
+	@Autowired
 	private RoleMapper roleMapper;
 
-	public RoleMapper getRoleMapper() {
-		return roleMapper;
-	}
-
-	public void setRoleMapper(RoleMapper roleMapper) {
-		this.roleMapper = roleMapper;
-	}
-	
 	@Override
 	public int add(Role role) {
 		roleMapper.insert(role);

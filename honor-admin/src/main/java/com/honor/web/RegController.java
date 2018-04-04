@@ -60,7 +60,7 @@ public class RegController {
         	
         } catch (Exception e) {
             e.printStackTrace();
-            //暂不处理
+            // TODO 暂不处理
         }
         return "reg_verify";
     }

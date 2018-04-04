@@ -25,12 +25,12 @@ public class ShiroConfig {
 		Map<String, String> filterChainMap = new LinkedHashMap<>();
 
 		// 配置不会被拦截的链接 顺序判断
-		filterChainMap.put("/static/**", "anon");
+		filterChainMap.put("/**", "anon");
 		// 配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
 		filterChainMap.put("/logout", "logout");
 		// 过滤链定义，从上向下顺序执行，一般将放在最为下边 :这是一个坑呢，一不小心代码就不好使了;
 		// authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-		filterChainMap.put("/**", "authc");
+		//filterChainMap.put("/**", "authc");
 
 		// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		bean.setLoginUrl("/login");

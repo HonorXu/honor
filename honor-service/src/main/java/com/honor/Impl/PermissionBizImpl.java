@@ -2,6 +2,9 @@ package com.honor.Impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.honor.biz.PermissionBiz;
 import com.honor.dal.mapper.PermissionMapper;
 import com.honor.model.Permission;
@@ -12,18 +15,12 @@ import com.honor.model.Permission;
  * @创建者：honor
  * @创建时间：2018-03-29
  */
+@Service
 public class PermissionBizImpl implements PermissionBiz {
-
+	
+	@Autowired
 	private PermissionMapper permissionMapper;
 
-	public PermissionMapper getPermissionMapper() {
-		return permissionMapper;
-	}
-
-	public void setPermissionMapper(PermissionMapper permissionMapper) {
-		this.permissionMapper = permissionMapper;
-	}
-	
 	@Override
 	public int add(Permission permission) {
 		permissionMapper.insert(permission);
